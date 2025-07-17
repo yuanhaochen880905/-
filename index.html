@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex 布局</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background-color: #eee;
+      }
+      /* * {
+              border: 1px solid black;
+            } */
+      .yinYing {
+        box-shadow: rgb(0 0 0 / 10%) 4px 5px 40px 10px,
+          rgb(0 0 0 / 14%) 0px 1px 5px 2px, rgb(0 0 0 / 14%) 0px 1px 8px 2px;
+      }
+      .flex {
+        display: flex;
+      }
+      .baiSe {
+        background-color: white;
+      }
+      .flex1 {
+        flex: 1;
+      }
+      .column {
+        flex-direction: column;
+      }
+      .mg8 {
+        margin: 8px;
+      }
+      .mgr8 {
+        margin-right: 8px;
+      }
+      .mgt8 {
+        margin-top: 8px;
+      }
+      .daoHang {
+        padding: 10px 20px;
+        border-bottom: 1px solid rgb(190, 190, 190);
+        font-size: 14px;
+        color: #666;
+      }
+      .youQu {
+        margin-left: 8px;
+      }
+      .shuju {
+        margin: 0 0 8px;
+        flex: auto;
+      }
+      .center-text {
+        text-align: center;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 1500px;
+        margin: 7 auto;
+        padding: 50px 30px;
+        background: white;
+      }
+
+      /* 第一行：标题导航 */
+      .tabs-container {
+        display: flex;
+        justify-content: space-around; /* 平均分布 */
+        border-bottom: 20px solid #e5e5e5;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .tab {
+        text-align: center;
+        flex: 1;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+      }
+
+      /* 第二行：主体内容三列布局 */
+      .content-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; /* 三等分 */
+        gap: 300px;
+        margin-bottom: 30px;
+      }
+
+      .section {
+        position: relative;
+      }
+
+      .contact-section {
+        text-align: left;
+      }
+
+      .brand-section {
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .legal-section {
+        text-align: right;
+      }
+
+      /* 第三行：底部备案信息 */
+      .footer-info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: #888;
+      }
+
+      /* 响应式处理 */
+      @media (max-width: 768px) {
+        .tabs-container {
+          flex-direction: column;
+        }
+
+        .tab {
+          margin-bottom: 15px;
+        }
+
+        .content-container {
+          grid-template-columns: 1fr;
+        }
+
+        .brand-section {
+          position: static;
+          transform: none;
+        }
+
+        .footer-info {
+          flex-direction: column;
+        }
+      }
+      #bottom-box {
+        position: relative;
+      }
+
+      #wechat-qr-code {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 100px;
+        height: 120px;
+      }
+    </style>
+  </head>
+  <body class="flex">
+    <!-- 顶部占满页面的格子 -->
+    <div
+      style="
+        width: 100vw;
+        height: 120px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background: rgba(243, 245, 247, 0.5);
+        color: #080808;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        z-index: 100;
+      "
+    >
+      <!-- 添加搜索框 -->
+      <div style="position: absolute; top: 10px; left: 10px">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="搜索"
+          style="border: 1px solid black; background-color: white; padding: 5px"
+        />
+        <button
+          id="search-button"
+          style="
+            border: 1px solid black;
+            background-color: black;
+            color: white;
+            padding: 5px;
+          "
+        >
+          搜索
+        </button>
+      </div>
+      <div class="center-text">
+        <h1>Bana</h1>
+        <p>Diligent creative</p>
+      </div>
+    </div>
+    <!-- 主区域 -->
+    <div class="flex1" style="display: flex; flex-direction: column">
+      <!-- 内容区 -->
+      <div
+        style="overflow: auto; height: calc(100vh - 60px)"
+        class="flex1 flex"
+      >
+        <!-- 左区 -->
+        <div style="flex: 3" class="flex column mg8">
+          <!-- 列表区 -->
+          <div class="flex column">
+            <!-- 列表项 -->
+            <div style="height: 700px" class="baiSe mgt8 yinYing">
+              <div class="carousel">
+                <img
+                  src="https://assets.hermes.cn/is/image/hermesedito/Ratio-16-7_LB_SHOES_AH25_1920x1080px_10_OK?fit=wrap%2C0&wid=1920"
+                  class="carousel-img"
+                  style="
+                    display: block;
+                    width: 100%;
+                    height: 700px;
+                    object-fit: cover;
+                  "
+                />
+                <img
+                  src="https://assets.hermes.cn/is/image/hermesedito/Ratio-16-9_LB_SHOES_AH25_1920x1080px_29?fit=wrap%2C0&wid=1920"
+                  class="carousel-img"
+                  style="
+                    display: none;
+                    width: 100%;
+                    height: 700px;
+                    object-fit: cover;
+                  "
+                />
+                <img
+                  src="https://assets.hermes.cn/is/image/hermesedito/Ratio-16-9_LB_SHOES_AH25_1920x1080px_05?fit=wrap%2C0&wid=1920"
+                  class="carousel-img"
+                  style="
+                    display: none;
+                    width: 100%;
+                    height: 700px;
+                    object-fit: cover;
+                  "
+                />
+                <script>
+                  let current = 0;
+                  const imgs = document.querySelectorAll(".carousel-img");
+                  function showImg(idx) {
+                    imgs.forEach(
+                      (img, i) =>
+                        (img.style.display = i === idx ? "block" : "none")
+                    );
+                  }
+                  function prevImg() {
+                    current = (current - 1 + imgs.length) % imgs.length;
+                    showImg(current);
+                  }
+                  function nextImg() {
+                    current = (current + 1) % imgs.length;
+                    showImg(current);
+                  }
+                  // 自动切换，每3秒切换一次
+                  setInterval(() => {
+                    nextImg();
+                  }, 3000);
+                  // 初始化显示第一张
+                  showImg(current);
+                </script>
+              </div>
+            </div>
+            <div style="height: 300px" class="baiSe mgt8 yinYing">
+              <div class="flex" style="height: 100%">
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #f7f7f7;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/868.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #e3eaff;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/9663.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #e3eaff;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/833-11.3.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #ffe4b5;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/833-11.2.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #d0f5a9;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                  "
+                >
+                  <img
+                    src="图片/66ee8abe000c8b22177655ca3161b01e000000a100004f50.jfif"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+              </div>
+            </div>
+            <div style="height: 300px" class="baiSe mgt8 yinYing">
+              <div class="flex" style="height: 100%">
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #f7f7f7;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/66ee8abe000c8b22177655ca3161b01e000000a100004f50.jfif"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #e3eaff;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/66ee8abe0002d7c51b2844232c06bd1e000000a100004f50.jfif"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #e3eaff;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/F6611.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #ffe4b5;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/1322.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 0.5;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #d0f5a9;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                  "
+                >
+                  <img
+                    src="图片/2309.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+              </div>
+            </div>
+            <div style="height: 140px" class="baiSe mgt8 yinYing">
+              <div class="center-text"><h1>新款推荐</h1></div>
+              <div class="center-text">
+                <p>潮流运动风:活力与时尚的完美融合</p>
+              </div>
+              <div class="center-text">
+                <p>
+                  能让你在人群中脱颖而出,无论是日常通勤还是潮流穿搭,这款鞋都能轻松驾驭
+                </p>
+              </div>
+            </div>
+            <div style="height: 650px" class="baiSe mgt8 yinYing">
+              <img
+                src="图片/L287.jpeg"
+                alt=""
+                style="height: 100%; width: 100%"
+              />
+            </div>
+            <div style="height: 300px" class="baiSe mgt8 yinYing">
+              <div class="flex" style="height: 100%">
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #f7f7f7;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/9663.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #e3eaff;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/L287.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #ffe4b5;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/9668.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #d0f5a9;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                  "
+                >
+                  <img
+                    src="图片/8688-1.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+              </div>
+            </div>
+            <div style="height: 140px" class="baiSe mgt8 yinYing">
+              <div class="center-text"><h1>热卖商品</h1></div>
+
+              <div class="center-text">
+                <p>
+                  运动鞋演绎bana匠心工艺与现代运动活力。设计美学与动感廓形交汇,特立独行,始终走在风格前沿。
+                </p>
+              </div>
+              <div class="center-text">
+                <p>透气轻量,高弹缓震,​百搭耐穿,​防滑稳脚,透气不闷</p>
+              </div>
+            </div>
+            <div style="height: 650px" class="baiSe mgt8 yinYing"></div>
+            <div style="height: 300px" class="baiSe mgt8 yinYing">
+              <div class="flex" style="height: 100%">
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #f7f7f7;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/833-11.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #e3eaff;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/868.jpeg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #ffe4b5;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                    border-right: 1px solid #ccc;
+                  "
+                >
+                  <img
+                    src="图片/微信图片_20240921105928.jpg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+                <div
+                  style="
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #d0f5a9;
+                    font-size: 18px;
+                    color: #333;
+                    height: 100%;
+                  "
+                >
+                  <img
+                    src="图片/微信图片_20240921105931.jpg"
+                    alt=""
+                    style="height: 100%; width: 100%"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <!-- 第一行：导航标题 -->
+              <div class="tabs-container">
+                <div class="tab">服务 +</div>
+                <div class="tab">购物帮助 +</div>
+                <div class="tab">BANA +</div>
+                <div class="tab">法律信息 +</div>
+              </div>
+
+              <!-- 第二行：主体内容 -->
+              <div class="content-container">
+                <!-- 左侧：联系方式 -->
+                <div class="section contact-section">
+                  <h4>联系我们</h4>
+                  <p>请联系客服</p>
+                  <p>周一至周日 10点-22点:</p>
+                  <p class="highlight">133-6055-9947</p>
+                </div>
+              </div>
+              <div id="bottom-box">
+                <img
+                  id="wechat-qr-code"
+                  src="图片/d1fc7b3c401d5c59a21dbf4787a4e57.png"
+                  alt="微信二维码"
+                />
+              </div>
+            </div>
+            <!-- 第三行：配送信息 -->
+            <div class="footer-info">
+              <div class="delivery">配送至：中国内地</div>
+            </div>
+          </div>
+          <div style="height: 150px" class="baiSe mgt8 yinYing"></div>
+          <script>
+            document
+              .getElementById("search-button")
+              .addEventListener("click", function () {
+                var searchTerm = document.getElementById("search-input").value;
+                if (searchTerm) {
+                  // 假设搜索结果页面为 search.html
+                  window.location.href = `search.html?query=${encodeURIComponent(
+                    searchTerm
+                  )}`;
+                } else {
+                  alert("请输入搜索内容");
+                }
+              });
+          </script>
+        </div>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("search-button")
+        .addEventListener("click", function () {
+          var searchTerm = document.getElementById("search-input").value;
+          if (searchTerm) {
+            window.location.href = `search.html?query=${encodeURIComponent(
+              searchTerm
+            )}`;
+          } else {
+            alert("请输入搜索内容");
+          }
+        });
+    </script>
+  </body>
+</html>
